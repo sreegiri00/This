@@ -1,0 +1,36 @@
+:root {
+    --tx-current-off-price: calc(var(--tx-fs-current-price) - .3rem);
+
+    --nav-height:4rem;
+    
+    --cl-bg-body:#fffaecca;
+    --cl-bg-cards:#fffbfbc9;
+    --cl-bg-card:#ffffff71;
+    --cl-backgrount: #ffffff95;
+    --cl-tx-head: #AB4459;
+    --tx-fs-head: 2rem;
+    --tx-fw-head:700;
+
+    --tx-card-fs-head: 1.5rem;
+    --tx-card-fw-head: 700;
+    --tx-card-fs: .8rem;
+    --tx-card-fw: 500;
+
+    --cl-danger:red;
+    --cl-ok:green;
+    --cl-current-price:rgb(0, 0, 0);
+    --cl-current-off-price:rgba(0, 0, 0, 0.716);
+    --tx-fs-current-price:1.3rem;
+    --tx-fw-current-price:600;
+    
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-style: revert-layer;
+
+}
+body{
+    background: var(--cl-bg-body);
+}

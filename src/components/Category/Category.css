@@ -1,0 +1,26 @@
+.ctg-main-main{
+    width: 70vw;
+}
+.ctg-main-main-h{
+    width: 90vw;
+}
+.ctg-img{
+    width: 70%;
+    height: 80px;
+    border-radius: 50px;
+}
+
+.ctg-name{
+    font-size: var(--tx-card-fs);
+}
+.ctg-img-sub{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+}
+.ctg-main{
+    cursor: pointer;
+    border-radius: 50px;
+}
