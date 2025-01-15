@@ -1,11 +1,15 @@
 {
+  "homepage": "https://sreegiri00.github.io/This",
   "name": "ecommerce",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "react-scripts start",
     "dev": "vite",
-    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "build": "react-scripts build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -21,6 +25,7 @@
     "react-bootstrap": "^2.10.7",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"
   },
