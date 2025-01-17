@@ -1,24 +1,28 @@
-import React, { useState } from 'react'
-import './Product.css'
+import React, { useContext,  useCallback  } from 'react'
+import './Product.css';
+import { ThemeContext } from '../../index'
+import { Link } from 'react-router-dom';
 
-export const Productlist = (product) => {
-  const [cost, setCost] = useState()
-  const { title, price, discountPercentage, thumbnail, description, category, rating, weight } = product.product;
 
-  function truncateText(title, length) {
-    if (title.length > length) {
-      return title.substring(0, length) + "...";
-    } else {
-      return title;
-    }
-  }
+export const Productlist = React.memo(({ product }) => {
+  const { title, price, discountPercentage, thumbnail, description, id } = product;
 
-  function cal(pric, discountPercentag) {
-    var a = (pric * (1 - (discountPercentag / 100)))
-    var b = parseFloat(a.toFixed(2));
-    return b;
-  }
+  const { setPassId } = useContext(ThemeContext);
 
+  const truncateText = useCallback((text, length) => {
+    return text.length > length ? `${text.substring(0, length)}...` : text;
+  }, []);
+
+  const cal= useCallback((price, discount) => {
+    return parseFloat((price * (1 - discount / 100)).toFixed(2));
+  }, []);
+
+  const handleClick = useCallback((id , product) => {
+      console.log('Selected Product ID:', id,product);
+      setPassId(product);
+    },
+    [setPassId]
+  );
   if (title == "The Product is not Found") {
     return (
       <div className="product-card">
@@ -32,7 +36,7 @@ export const Productlist = (product) => {
     return (
       <>
 
-        <div className="product-card section_padd">
+        <Link  to={`details/id=${id}`} className="product-card section_padd"  onClick={() => handleClick(id,product)}>
           <img src={thumbnail} alt="" srcSet="" />
           <h1 className='product-card-titel'>{truncateText(title, 20)}</h1>
           <h1 className='product-card-des'>{description}</h1>
@@ -47,11 +51,11 @@ export const Productlist = (product) => {
               <h1 className="product-card-price-prg"><small>Off</small> {discountPercentage}%</h1>
             </div>
           </div>
-        </div>
+        </Link>
 
       </>
     )
 
 
   }
-}
+});

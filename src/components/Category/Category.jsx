@@ -1,20 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import data from '../../../public/Data/ctgData.json';
 import './Category.css';
+import { ThemeContext  } from '../../index';
 
 export const Category = ({updateValue,cls}) => {
     const sliderRef = useRef(null);
     const carouselRef = useRef(null);
     const [fetchData, setFetchData] = useState();
     const [mergData, setMergData] = useState(data);
-    const [wdt , setWdt] =useState((window.innerWidth)/200)
+    const [wdt , setWdt] =useState((window.innerWidth)/200);
 
     useEffect(() => {
         fetch('https://dummyjson.com/products/categories')
             .then(res => res.json())
             .then(res => setFetchData(res));
-            setWdt((window.innerWidth)/200);  
+            setWdt((window.innerWidth)/200); 
+             
     }, []);
 
 

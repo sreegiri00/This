@@ -1,0 +1,20 @@
+.cart-add{
+    /* border: 2px solid brown; */
+    padding: 10% 10%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.cart-main-img{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+@media screen and (min-width : 768px) {
+    .cart-main-left-sub{
+        position: sticky;
+        top: 0px;
+        bottom: 0px;
+    }
+    
+}

@@ -13,7 +13,7 @@ export const NavBarr = () => {
 
     return (
       <>
-        <nav className="navbar">
+        <nav className=" nav-bar">
           <div className="nav-container">
             <button
               className={`nav-toggle ${isOpen ? 'active' : ''}`}
