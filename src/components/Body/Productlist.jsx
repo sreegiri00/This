@@ -17,8 +17,7 @@ export const Productlist = React.memo(({ product }) => {
     return parseFloat((price * (1 - discount / 100)).toFixed(2));
   }, []);
 
-  const handleClick = useCallback((id , product) => {
-      console.log('Selected Product ID:', id,product);
+  const handleClick = useCallback((product) => {
       setPassId(product);
     },
     [setPassId]
@@ -35,8 +34,8 @@ export const Productlist = React.memo(({ product }) => {
   else {
     return (
       <>
-
-        <Link  to={`details/id=${id}`} className="product-card section_padd"  onClick={() => handleClick(id,product)}>
+      
+        <Link  to={`details/id=${id}`} className="product-card section_padd"  onClick={() => handleClick(product)}>
           <img src={thumbnail} alt="" srcSet="" />
           <h1 className='product-card-titel'>{truncateText(title, 20)}</h1>
           <h1 className='product-card-des'>{description}</h1>

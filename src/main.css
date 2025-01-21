@@ -16,6 +16,14 @@
     --tx-card-fs: .8rem;
     --tx-card-fw: 500;
 
+    --tx-cart-fs-head: 2.3rem;
+    --tx-cart-fw-head: 700;
+    --tx-cart-fs: 1.3rem;
+    --tx-cart-fw: 500;
+
+    --tx-price:2rem;
+    --tx-date:.7rem;
+
     --cl-danger:red;
     --cl-ok:green;
     --cl-current-price:rgb(0, 0, 0);

@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import addToCartSlice from './addToCartSlice'
 
 
 const appStore = configureStore({
   reducer: {
-    counter: counterReducer
+    addToCartSlice : addToCartSlice
   },
 });
 

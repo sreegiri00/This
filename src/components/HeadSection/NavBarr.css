@@ -72,7 +72,19 @@ h1 {
     height: auto;
     width: 50px;
 }
-
+.nav-purchase{
+    text-decoration: none;
+    color: red;
+}
+.nav-purchase-count{
+    font-size: small;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    top: 12px;
+    display: flex;
+    justify-content: end;
+}
 .nav-link .active {
     color: rgb(255, 140, 0);
     /* background: #000; */

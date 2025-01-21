@@ -73,6 +73,10 @@
   .nav-toggle.active {
     transform: rotate(180deg);
   }
+  .navbar-res-cart{
+    height: auto;
+    width: 40px;
+  }
   
   /* Mobile styles */
   @media (max-width: 768px) {
