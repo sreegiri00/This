@@ -7,23 +7,24 @@ import { addCart } from '../../utils/addToCartSlice';
 import onePro from "../../../public/Data/onePro.json";
 
 export const Details = () => {
-  const  {passId}  = useContext(ThemeContext)
-  // const [passId, setPassId] = useState(onePro)
+  // const { passId } = useContext(ThemeContext)
+  const [passId, setPassId] = useState(onePro)
   const { id, title, images = [], thumbnail, rating, brand, price, description, reviews = [], discountPercentage, category, dimensions, weight, stock, availabilityStatus } = passId;
   const [proImg, setProImg] = useState(thumbnail);
- const[imgg , setImgg ] = useState([...images,thumbnail])
+  const [imgg, setImgg] = useState([...images, thumbnail])
   const dispatch = useDispatch()
   useEffect(() => {
-    
+
     return () => {
       console.log("pas", passId);
-      
+
     };
   }, [passId]);
 
   return (
     <>
-      <Row className='cart-main container'>
+
+      <Row lg={12} className='cart-main '>
         {/* CART LEFT  */}
         <Col md={6} className='cart-main-left' >
           <div className="cart-main-left-sub">
@@ -31,7 +32,7 @@ export const Details = () => {
             <Col md={12}>
               <Row>
                 <div className="cart-main-img">
-                  <img srcSet={proImg} alt="" className='cart-main-img-in'/>
+                  <img srcSet={proImg} alt="" className='cart-main-img-in' />
                 </div>
               </Row>
             </Col>
@@ -39,7 +40,7 @@ export const Details = () => {
             <Row >
               <div className="cart-side-img-box-main">
                 <div className="cart-side-img-box">
-                  {imgg.map((res, index) => <Col key={ index} onClick={()=>setProImg(res)}><div className='cart-side-img' ><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
+                  {imgg.map((res, index) => <Col key={index} onClick={() => setProImg(res)}><div className='cart-side-img' ><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
                 </div>
               </div>
             </Row>

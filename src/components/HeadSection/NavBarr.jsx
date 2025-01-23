@@ -24,7 +24,7 @@ export const NavBarr = () => {
 
     return (
       <>
-        <nav className=" nav-bar">
+        <nav className='nav-bar-res'>
           <div className="nav-container">
             <button
               className={`nav-toggle ${isOpen ? 'active' : ''}`}
@@ -42,7 +42,7 @@ export const NavBarr = () => {
               <Link to='' className="nav-link">PRODUCTS</Link>
             </div>
             <div className='navbar-res-cart' >
-              <NavLink to='purchase'>
+              <NavLink to='addcart'>
                 <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
                 <img src="" alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card navbar-res-cart' />
               </NavLink>

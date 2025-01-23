@@ -14,11 +14,11 @@ export const Body = () => {
     const [data, setData] = useState([])
     const [searchData, setSearchData] = useState([])
     const [ctg, setCtg] = useState('https://dummyjson.com/products');
-    const[cls , setCls] = useState(true);
+    const [cls, setCls] = useState(true);
 
     useEffect(() => {
         const check = (window.innerWidth)
-        if (768>check) {
+        if (768 > check) {
             setCls(false)
         }
         else setCtg(true)
@@ -28,7 +28,7 @@ export const Body = () => {
             .then(res => res.json())
             .then((data) => {
                 setData(data.products),
-                setSearchData(data.products)
+                    setSearchData(data.products)
             })
     }, [ctg]);
 
@@ -53,7 +53,7 @@ export const Body = () => {
             }
         }
     };
-   
+
     return (
         <>
             <div>
@@ -68,8 +68,8 @@ export const Body = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`${cls ? 'ctg-main-box': 'ctg-main-box-h'}`}>
-                    <Category updateValue={setCtg} cls={cls}/>
+                <div className={`${cls ? 'ctg-main-box' : 'ctg-main-box-h'}`}>
+                    <Category updateValue={setCtg} cls={cls} />
 
                     <div className={`${cls ? 'product-bar-srch' : 'product-bar-srch-h'}`}>
                         <div>
@@ -79,8 +79,10 @@ export const Body = () => {
 
                 </div>
             </div>
-            <div className="product-cads container">
-                {data.map((res) => <Productlist product={res} key={res.id} />)}
+            <div className="product-cadd">
+                <div className="product-cads">
+                    {data.map((res) => <Productlist product={res} key={res.id} />)}
+                </div>
             </div>
 
         </>

@@ -1,36 +1,44 @@
 :root {
     --tx-current-off-price: calc(var(--tx-fs-current-price) - .3rem);
-
-    --nav-height:4rem;
     
-    --cl-bg-body:#fffaecca;
-    --cl-bg-cards:#fffbfbc9;
-    --cl-bg-card:#ffffff71;
+    --nav-height: 4rem;
+
+    --cl-bg-body: #fffaecca;
+    --cl-bg-cards: #fffbfbc9;
+    --cl-bg-card: #ffffff71;
     --cl-backgrount: #ffffff95;
     --cl-tx-head: #AB4459;
     --tx-fs-head: 2rem;
-    --tx-fw-head:700;
-
+    --tx-fw-head: 700;
+    
     --tx-card-fs-head: 1.5rem;
     --tx-card-fw-head: 700;
     --tx-card-fs: .8rem;
     --tx-card-fw: 500;
-
-    --tx-cart-fs-head: 2.3rem;
+    
+    --tx-cart-fs-head: 2.25rem;
     --tx-cart-fw-head: 700;
     --tx-cart-fs: 1.3rem;
     --tx-cart-fw: 500;
-
-    --tx-price:2rem;
-    --tx-date:.7rem;
-
-    --cl-danger:red;
-    --cl-ok:green;
-    --cl-current-price:rgb(0, 0, 0);
-    --cl-current-off-price:rgba(0, 0, 0, 0.716);
-    --tx-fs-current-price:1.3rem;
-    --tx-fw-current-price:600;
     
+    --tx-price: 2rem;
+    --tx-date: .7rem;
+    
+    --cl-danger: red;
+    --cl-ok: green;
+    --cl-current-price: rgb(0, 0, 0);
+    --cl-current-off-price: rgba(236, 8, 8, 0.837);
+    --tx-fs-current-price: 1.3rem;
+    --tx-fw-current-price: 600;
+    
+    --tx-p-fs: 1.25rem;
+    --tx-p-lh: 1.75rem;
+    
+    --cart-sz :10rem
+
+
+
+
 }
 
 * {
@@ -39,6 +47,127 @@
     font-style: revert-layer;
 
 }
-body{
+
+body {
     background: var(--cl-bg-body);
+}
+
+@media screen and (min-width : 1024px) {
+    :root {
+
+        --tx-fs-head: 2.25rem;
+        --tx-fw-head: 700;
+
+        --tx-card-fs-head: 1.5rem;
+        --tx-card-fw-head: 700;
+        --tx-card-fs: .8rem;
+        --tx-card-fw: 500;
+
+        --tx-cart-fs-head: 2.25rem;
+        --tx-cart-fw-head: 700;
+        --tx-cart-fs: 1.75rem;
+        --tx-cart-fw: 500;
+
+        --tx-price: 2rem;
+        --tx-date: .7rem;
+
+        --tx-fs-current-price: 1.3rem;
+        --tx-fw-current-price: 600;
+
+        --tx-p-fs: 1.25rem;
+        --tx-p-lh: 1.3rem;
+
+    }
+
+}
+
+@media (max-width: 1024px) and (min-width : 769px) {
+    :root {
+
+        --tx-fs-head: 2rem;
+        --tx-fw-head: 700;
+
+        --tx-card-fs-head: 1.5rem;
+        --tx-card-fw-head: 700;
+        --tx-card-fs: .8rem;
+        --tx-card-fw: 500;
+
+        --tx-cart-fs-head: 2rem;
+        --tx-cart-fw-head: 700;
+        --tx-cart-fs: 1.5rem;
+        --tx-cart-fw: 500;
+
+        --tx-price: 2rem;
+        --tx-date: .7rem;
+
+        --tx-fs-current-price: 1.3rem;
+        --tx-fw-current-price: 600;
+
+        --tx-p-fs: 1.125rem;
+        --tx-p-lh: 1.75rem;
+
+        --img-sz:15rem;
+    }
+
+}
+
+@media (max-width : 769px) and (min-width : 481px) {
+    :root {
+
+        --tx-fs-head: 1.75rem;
+        --tx-fw-head: 700;
+
+        --tx-card-fs-head: 1.5rem;
+        --tx-card-fw-head: 700;
+        --tx-card-fs: .8rem;
+        --tx-card-fw: 500;
+
+        --tx-cart-fs-head: 1.75rem;
+        --tx-cart-fw-head: 700;
+        --tx-cart-fs: 1.25rem;
+        --tx-cart-fw: 500;
+
+        --tx-price: 2rem;
+        --tx-date: .7rem;
+
+        --tx-fs-current-price: 1.3rem;
+        --tx-fw-current-price: 600;
+
+        --tx-p-fs: 1rem;
+        --tx-p-lh: 1.2rem;
+        --img-sz:10rem;
+
+    }
+
+}
+
+@media screen and (max-width :481px) {
+    :root {
+
+        --tx-fs-head: 1.5rem;
+        --tx-fw-head: 700;
+
+        --tx-card-fs-head: 1rem;
+        --tx-card-fw-head: 700;
+        --tx-card-fs: .6rem;
+        --tx-card-fw: 500;
+
+        --tx-cart-fs-head: 1.5rem;
+        --tx-cart-fw-head: 700;
+        --tx-cart-fs: 1.125rem;
+        --tx-cart-fw: 500;
+
+        --tx-price: 2rem;
+        --tx-date: .7rem;
+
+        --tx-fs-current-price: .8rem;
+        --tx-fw-current-price: 600;
+
+        --tx-p-fs: 0.75rem;
+        --tx-p-lh: .7rem;
+
+        --img-sz:10rem;
+
+    }
+
 }

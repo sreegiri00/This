@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 export const Productlist = React.memo(({ product }) => {
-  const { title, price, discountPercentage, thumbnail, description, id } = product;
+  const { title, price, discountPercentage, thumbnail, description, id ,category} = product;
 
   const { setPassId } = useContext(ThemeContext);
 
@@ -36,9 +36,10 @@ export const Productlist = React.memo(({ product }) => {
       <>
       
         <Link  to={`details/id=${id}`} className="product-card section_padd"  onClick={() => handleClick(product)}>
-          <img src={thumbnail} alt="" srcSet="" />
+          <img src={thumbnail} alt="" srcSet="" className='product-card-img'/>
           <h1 className='product-card-titel'>{truncateText(title, 20)}</h1>
-          <h1 className='product-card-des'>{description}</h1>
+          <h6 className='product-card-ctg'>({category})</h6>
+          <p className='product-card-des'>{description}</p>
           <div className="product-card-prices">
             <div>
               <h1 className="product-card-price"><span>Price :</span> {cal(price, discountPercentage)}$</h1>
@@ -47,7 +48,7 @@ export const Productlist = React.memo(({ product }) => {
               <h2 className="product-card-price-off"><s>{price}</s>$</h2>
             </div>
             <div>
-              <h1 className="product-card-price-prg"><small>Off</small> {discountPercentage}%</h1>
+              <h3 className="product-card-price-prg"><small>Off</small> {discountPercentage}%</h3>
             </div>
           </div>
         </Link>
