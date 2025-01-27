@@ -28,7 +28,7 @@
     margin: 2%;
 }
 .cart-add-btn-name {
-    font-size: xx-large;
+    font-size: var(--tx-cart-fs);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -87,7 +87,30 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
 }
-
+.parchase-add-btn{
+    display: flex;
+    border:  .01rem solid #000;
+    /* width: 70px; */
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    
+}
+.parchase-add-btn div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 10px;
+}
+.parchase-add-btn div:hover {
+    background: #0000006e;
+    color: #ffffff;
+    transition: 1s;
+    content: "";
+}
 @media screen and (max-width :430px) {
     .parchase-nav-sub {
         width: 250px;

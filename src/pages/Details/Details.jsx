@@ -1,18 +1,45 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../../index';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import Button from '@mui/joy/Button';
 import './Details.css'
 import { useDispatch } from 'react-redux';
 import { addCart } from '../../utils/addToCartSlice';
+import { useSelector } from 'react-redux';
 import onePro from "../../../public/Data/onePro.json";
 
 export const Details = () => {
-  // const { passId } = useContext(ThemeContext)
-  const [passId, setPassId] = useState(onePro)
+  const { passId } = useContext(ThemeContext)
+  // const [passId, setPassId] = useState(onePro)
+  const sliceParchase = useSelector((state) => state.addToCartSlice.items);
   const { id, title, images = [], thumbnail, rating, brand, price, description, reviews = [], discountPercentage, category, dimensions, weight, stock, availabilityStatus } = passId;
   const [proImg, setProImg] = useState(thumbnail);
   const [imgg, setImgg] = useState([...images, thumbnail])
   const dispatch = useDispatch()
+  console.log("ss: ", sliceParchase);
+
+  const addToParchase = (e) => {
+
+  //   dispatch(addCart({ passId }))
+  //  for (let i = 0; i <= sliceParchase.passId.length+1; i++) {
+  //   if ((sliceParchase[i].passId.id) !== id) {
+      
+  //   }
+  //   else console.log("its have the product : : ");
+    
+  //  }
+  console.log(e.target.getAttribute('name'));
+  
+  let chrckArray = sliceParchase.filter(item=>item.id==e.target.getAttribute('name'))
+  console.log(chrckArray);
+  chrckArray.length>=1?(alert("already exist")):dispatch(addCart({ passId }))
+  
+  console.log(chrckArray);
+  
+
+  }
+
+
   useEffect(() => {
 
     return () => {
@@ -36,7 +63,11 @@ export const Details = () => {
                 </div>
               </Row>
             </Col>
-            <Row><div className='cart-add'><Button className='cart-add-btn' onClick={() => dispatch(addCart({ passId }))}><h1 className='cart-add-btn-name'>Add Cart</h1></Button> </div></Row>
+            <Row>
+              <div className='cart-add'>
+                <Button className='cart-add-btn cart-add-btn-name' variant="soft" color="primary" name={id} onClick={addToParchase}> <h2 name={id}>Add Cart</h2></Button>
+              </div>
+            </Row>
             <Row >
               <div className="cart-side-img-box-main">
                 <div className="cart-side-img-box">
@@ -60,7 +91,7 @@ export const Details = () => {
                       <h1 className='cart-name-rating-no'>{rating} <span>★</span></h1>
                     </div>
                     <div className="cart-name-rating-brand">
-                      <h1 className="cart-name-rating-brand-name">({brand})</h1>
+                      <h1 className="cart-name-rating-brand-name">({category})</h1>
                     </div>
                   </div >
                 </div>
@@ -87,7 +118,7 @@ export const Details = () => {
           </Row><hr />
           <Row>
             <div className='cart-detales'>
-              <h1 className="cart-details-head cart-sub-head">Details : </h1>
+              <h1 className="cart-details-head cart-sub-head">Details :{id} </h1>
               <div className="cart-details-paragraph">
                 <div className="cart-details-paragraph-content">Brand : {brand}</div>
                 <div className="cart-details-paragraph-content">Category : {category}</div>
@@ -97,6 +128,8 @@ export const Details = () => {
                 <div className="cart-details-paragraph-content">Depth :{dimensions.depth} </div>
                 <div className="cart-details-paragraph-content">Availebility :{availabilityStatus}</div>
                 <div className="cart-details-paragraph-content">Stoke : {stock}</div>
+               
+
               </div>
             </div>
           </Row>

@@ -22,6 +22,7 @@ export const Productlist = React.memo(({ product }) => {
     },
     [setPassId]
   );
+
   if (title == "The Product is not Found") {
     return (
       <div className="product-card">
@@ -39,15 +40,14 @@ export const Productlist = React.memo(({ product }) => {
           <img src={thumbnail} alt="" srcSet="" className='product-card-img'/>
           <h1 className='product-card-titel'>{truncateText(title, 20)}</h1>
           <h6 className='product-card-ctg'>({category})</h6>
-          <p className='product-card-des'>{description}</p>
+          {/* <p className='product-card-des'>{description}</p> */}
           <div className="product-card-prices">
             <div>
               <h1 className="product-card-price"><span>Price :</span> {cal(price, discountPercentage)}$</h1>
             </div>
             <div>
               <h2 className="product-card-price-off"><s>{price}</s>$</h2>
-            </div>
-            <div>
+           
               <h3 className="product-card-price-prg"><small>Off</small> {discountPercentage}%</h3>
             </div>
           </div>

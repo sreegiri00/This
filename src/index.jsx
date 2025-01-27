@@ -18,7 +18,7 @@ export default function Index() {
                 <Provider store={store}>
                 <NavBarr />
                 <Routes>
-                    <Route path='/' element={<Details />} />
+                    {/* <Route path='/' element={<Details />} /> */}
                     <Route path='/' element={<Body />} />
                     <Route path='/about' element={<About />} />
                     <Route path='/addcart' element={<Purchase />} />

@@ -9,8 +9,11 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 export const Purchase = React.memo(() => {
   const sliceParchase = useSelector((state) => state.addToCartSlice.items);
-  const { setPassId ,passId} = useContext(ThemeContext);
-  
+  const { setPassId, passId } = useContext(ThemeContext);
+  const [show, setShow] = useState(0);
+
+
+
   const truncateText = useCallback((text, length) => {
     return text.length > length ? `${text.substring(0, length)}...` : text;
   }, []);
@@ -27,9 +30,9 @@ export const Purchase = React.memo(() => {
   );
 
   const totalPrice = sliceParchase.reduce((sum, item) => {
-    return sum + (item.passId?.price || 0); // Add the price if it exists, otherwise add 0
+    return sum + (item.passId?.price || 0); 
   }, 0);
-  
+
 
   if (!sliceParchase || sliceParchase.length === 0) {
     return (
@@ -63,9 +66,14 @@ export const Purchase = React.memo(() => {
           return (
             <>
               <div key={item.passId.id} className="product-card section_padd" >
-              
+
+                <div className="parchase-add-btn">
+                  <div className="parchase-add-btn-sub" onClick={() => setShow(show - 1)}>-</div>
+                  <div className="parchase-add-btn-show">{show}</div>
+                  <div className="parchase-add-btn-add" onClick={() => setShow(show + 1)}>+</div>
+                </div>
                 <Link to={`/product/${item.passId.id}`} onClick={() => handleClick(item.passId)} className='product-card-in'>
-                  <img  className='parchase-img' src={item.passId.thumbnail} alt={item.passId.title || 'Product Image'} />
+                  <img className='parchase-img' src={item.passId.thumbnail} alt={item.passId.title || 'Product Image'} />
                   <h1 className="product-card-title">{truncateText(item.passId.title, 20)}</h1>
                   <h6 className='product-card-ctg'>({item.passId.category})</h6>
                   <div className="product-card-prices">
