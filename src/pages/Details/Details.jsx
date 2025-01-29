@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { ThemeContext } from '../../index';
 import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/joy/Button';
@@ -10,56 +10,51 @@ import onePro from "../../../public/Data/onePro.json";
 
 export const Details = () => {
   const { passId } = useContext(ThemeContext)
+  const [imgg, setImgg] = useState([]);
+  const [detail, setDetail] = useState({});
   // const [passId, setPassId] = useState(onePro)
   const sliceParchase = useSelector((state) => state.addToCartSlice.items);
-  const { id, title, images = [], thumbnail, rating, brand, price, description, reviews = [], discountPercentage, category, dimensions, weight, stock, availabilityStatus } = passId;
-  const [proImg, setProImg] = useState(thumbnail);
-  const [imgg, setImgg] = useState([...images, thumbnail])
-  const dispatch = useDispatch()
-  console.log("ss: ", sliceParchase);
-
-  const addToParchase = (e) => {
-
-  //   dispatch(addCart({ passId }))
-  //  for (let i = 0; i <= sliceParchase.passId.length+1; i++) {
-  //   if ((sliceParchase[i].passId.id) !== id) {
-      
-  //   }
-  //   else console.log("its have the product : : ");
-    
-  //  }
-  console.log(e.target.getAttribute('name'));
   
-  let chrckArray = sliceParchase.filter(item=>item.id==e.target.getAttribute('name'))
-  console.log(chrckArray);
-  chrckArray.length>=1?(alert("already exist")):dispatch(addCart({ passId }))
+  const url = window.location.href;
+  const urlId = url.split("id=")[1];
+  const [idVal, setIdVal] = useState(`https://dummyjson.com/products/${urlId}`);
   
-  console.log(chrckArray);
-  
-
-  }
-
-
   useEffect(() => {
+    fetch(idVal)
+    .then(res => res.json())
+    .then(data => {
+      
+      setDetail(data);
+    })
+  }, [idVal]);  
+  const { id, title, images = [], thumbnail, rating, brand, price, description, reviews = [], discountPercentage, category, dimensions, weight, stock, availabilityStatus } = detail;
 
-    return () => {
-      console.log("pas", passId);
 
-    };
-  }, [passId]);
+  const dispatch = useDispatch()
+  // console.log("ss: ", sliceParchase);
+  // console.log("==op : ",imgg);
+  
+  const addToParchase = (e) => {
+    dispatch(addCart({ passId }));
+  };
+
+
+  const cal = useCallback((price, discount) => {
+    return parseFloat((price * (1 - discount / 100)).toFixed(2));
+  }, []);
 
   return (
     <>
 
       <Row lg={12} className='cart-main '>
-        {/* CART LEFT  */}
+      
         <Col md={6} className='cart-main-left' >
           <div className="cart-main-left-sub">
 
             <Col md={12}>
               <Row>
                 <div className="cart-main-img">
-                  <img srcSet={proImg} alt="" className='cart-main-img-in' />
+                  <img srcSet={imgg.length==0 ? thumbnail : imgg} alt="" className='cart-main-img-in' />
                 </div>
               </Row>
             </Col>
@@ -71,13 +66,13 @@ export const Details = () => {
             <Row >
               <div className="cart-side-img-box-main">
                 <div className="cart-side-img-box">
-                  {imgg.map((res, index) => <Col key={index} onClick={() => setProImg(res)}><div className='cart-side-img' ><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
+                  {images?.map((res, index) => <Col key={index} ><div className='cart-side-img' onClick={()=>setImgg(res)}><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
                 </div>
               </div>
             </Row>
           </div>
         </Col>
-        {/* CART RIGHT  */}
+      
         <Col md={6} className='cart-main-right' >
           <Row>
             <div className='cart-name'>
@@ -98,11 +93,11 @@ export const Details = () => {
               </Row>
               <div className="cart-name-price-box">
                 <div className="cart-name-price-box-in">
-                  <h1 className="cart-name-price">Price&nbsp;:&nbsp;{price}&nbsp;$ </h1>
+                  <h1 className="cart-name-price">Price&nbsp;:&nbsp;{cal(price,discountPercentage)}&nbsp;$ </h1>
                 </div>
                 <div className="cart-name-price-sub">
                   <div className="cart-name-price-sub-not">
-                    <h1 className="cart-name-price-sub-not-name"><s>4654</s> &nbsp;$</h1>
+                    <h1 className="cart-name-price-sub-not-name"><s>{price}</s> &nbsp;$</h1>
                   </div>
                   <div className="cart-name-price-sub-off">
                     <h1 className="cart-name-price-sub-off">Off : {discountPercentage} %</h1>
@@ -123,13 +118,11 @@ export const Details = () => {
                 <div className="cart-details-paragraph-content">Brand : {brand}</div>
                 <div className="cart-details-paragraph-content">Category : {category}</div>
                 <div className="cart-details-paragraph-content">Weight :{weight}</div>
-                <div className="cart-details-paragraph-content">Width :{dimensions.width}</div>
-                <div className="cart-details-paragraph-content">Height :{dimensions.height}</div>
-                <div className="cart-details-paragraph-content">Depth :{dimensions.depth} </div>
+                {/* <div className="cart-details-paragraph-content">Width :{dimensions.width}</div> */}
+                {/* <div className="cart-details-paragraph-content">Height :{dimensions.height}</div> */}
+                {/* <div className="cart-details-paragraph-content">Depth :{dimensions.depth} </div> */}
                 <div className="cart-details-paragraph-content">Availebility :{availabilityStatus}</div>
                 <div className="cart-details-paragraph-content">Stoke : {stock}</div>
-               
-
               </div>
             </div>
           </Row>
@@ -140,8 +133,8 @@ export const Details = () => {
           <hr />
           <Row>
             <div className='cart-users'> <div className="cart-users-main"> <h1 className="cart-users-main cart-sub-head">Review : </h1></div>
-              {reviews.map((res) =>
-                <Row key={id}>
+              {reviews.map((res,index) =>
+                <Row key={index}>
                   <div className="cart-user-box">
                     <Row className="cart-user-names">
                       <Col md={2}>

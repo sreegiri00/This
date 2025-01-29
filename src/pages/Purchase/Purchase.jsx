@@ -20,6 +20,7 @@ export const Purchase = React.memo(() => {
 
   const calculateDiscountPrice = useCallback((price, discount) => {
     return parseFloat((price * (1 - discount / 100)).toFixed(2));
+    
   }, []);
 
   const handleClick = useCallback(
