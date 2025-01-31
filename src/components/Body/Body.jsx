@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import './Product.css'
 import { Productlist } from './Productlist';
@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import notfount from '../../assets/notfount.webp'
 import '../Category/Category.css'
+import { ThemeContext } from '../../index';
 
 
 export const Body = () => {
@@ -15,6 +16,7 @@ export const Body = () => {
     const [searchData, setSearchData] = useState([])
     const [ctg, setCtg] = useState('https://dummyjson.com/products');
     const [cls, setCls] = useState(true);
+    const {focused} = useContext(ThemeContext)
 
     useEffect(() => {
         const check = (window.innerWidth)
@@ -31,7 +33,9 @@ export const Body = () => {
                     setSearchData(data.products)
             })
     }, [ctg]);
-
+const inputFucused =()=>{
+    focused.current.focus()
+}
 
 
     //input is saved
@@ -60,23 +64,20 @@ export const Body = () => {
                 <div className='banner-img'></div>
             </div>
             <div className="catagory-bar">
-
                 <div className="product-main">
                     <div className='product-bar'>
                         <div>
-                            <h1 className='product-bar-head'>PRODUCTS </h1>
+                            <h1 className='product-bar-head' onClick={inputFucused}> PRODUCTS </h1>
                         </div>
                     </div>
                 </div>
                 <div className={`${cls ? 'ctg-main-box' : 'ctg-main-box-h'}`}>
                     <Category updateValue={setCtg} cls={cls} />
-
                     <div className={`${cls ? 'product-bar-srch' : 'product-bar-srch-h'}`}>
                         <div>
-                            <input type="text" className='product-input' onChange={filterProduct} placeholder='Search the products...' />
+                            <input type="text" className='product-input' onChange={filterProduct} placeholder='Search the products...' ref={focused}/>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className="product-cadd">

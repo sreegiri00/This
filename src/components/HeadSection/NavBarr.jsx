@@ -1,24 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "bootstrap";
 import './NavBarr.css';
 import './NavBarrRes.css';
 import { NavLink, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faUser } from '@fortawesome/free-solid-svg-icons'
+import { ThemeContext } from '../../index';
 
 
 export const NavBarr = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [storeCount , setStoreCount] = useState()
+  const { focused } = useContext(ThemeContext)
+  const [storeCount, setStoreCount] = useState()
   const count = useSelector((state) => state.addToCartSlice.count);
 
   useEffect(() => {
     if (0 !== count) {
-      if (9 < count ) {setStoreCount("9+")}
+      if (9 < count) { setStoreCount("9+") }
       else setStoreCount(count)
     }
     else setStoreCount('');
   }, [count]);
+
+  const inputFocused = () => {
+    if (focused.current) {
+      focused.current.focus()
+    }
+    window.scrollBy({ top: 900, behavior: "smooth" });
+
+  }
 
   if (630 >= (window.innerWidth)) {
 
@@ -39,15 +51,18 @@ export const NavBarr = () => {
             <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
               <NavLink to='/' className="nav-link">HOME</NavLink>
               <NavLink to='about' className="nav-link">ABOUT</NavLink>
-              <Link to='' className="nav-link">PRODUCTS</Link>
+              <Link to='' className="nav-link" onClick={inputFocused}>PRODUCTS</Link>
             </div>
             <div className='navbar-res-cart' >
               <NavLink to='addcart'>
                 <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
                 <img src="" alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card navbar-res-cart' />
-              </NavLink>
-            </div>
 
+              </NavLink>
+
+            </div> <NavLink to='/login' className='nav-head'>
+              <FontAwesomeIcon icon={faUser} />
+            </NavLink>
           </div>
         </nav>
 
@@ -67,13 +82,20 @@ export const NavBarr = () => {
           <div className='nav-link'>
             <NavLink className='nav-head' to='/'>HOME</NavLink>
             <NavLink className='nav-head' to='about'>ABOUT</NavLink>
-            <Link className='nav-head' >PRODUCTS</Link>
+            <NavLink className='nav-head' to='/' onClick={inputFocused}>PRODUCTS</NavLink>
           </div>
-          <div >
-            <NavLink to='addcart'>
-              <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
-              <img  alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card' /></NavLink>
-
+          <div className='nav-link-sub' >
+            <div>
+              <NavLink to='addcart'>
+                <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
+                <img alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card' />
+              </NavLink>
+            </div>
+            <div className='nav-link-user link'>
+              <NavLink to='/login' className='nav-head'>
+                <FontAwesomeIcon icon={faUser} />
+              </NavLink>
+            </div>
           </div>
         </div>
       </>

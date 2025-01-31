@@ -89,7 +89,13 @@ h1 {
     color: rgb(255, 140, 0);
     /* background: #000; */
 }
-
+.nav-link-sub{
+    display: flex;
+}
+.nav-link-user{
+    font-size: var(--tx-fs-head);
+    margin-left: 10px;
+}
 /* .nav-bar-img {
     height: auto;
     width: 25%;
