@@ -1,8 +1,9 @@
 import { Formik, Field, ErrorMessage } from 'formik';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import * as Yup from 'yup';
 import './lo.css'
 import { NavLink } from 'react-router-dom';
+import { current } from '@reduxjs/toolkit';
 
 
 // Validation Schema
@@ -14,26 +15,48 @@ const LoginSchema = Yup.object().shape({
 });
 // console.log("ok :",LoginSchema);
 
-
 function Login() {
+  const storedUser = JSON.parse(localStorage.getItem("users"));
+
+  console.log("data :", storedUser);
+
+  const dataVerification = (values, { setSubmitting }) => {
+    console.log("data1 :", storedUser);
+    const userName = storedUser.map((res) => res.username == values.username && res.password == values.password).filter((res) => res == true).find((res) => res == true);
+    console.log("llla" ,userName);
+    if (userName == true ) {
+      
+      console.log("its have ....");
+      setTimeout(() => {
+        alert(JSON.stringify(values, null, 2));
+        setSubmitting(false);
+      }, 400);
+      
+    }
+    else{
+      console.log("is not");
+      setTimeout(() => {
+        alert("Incorrect password or username");
+        setSubmitting(false);
+      }, 400);
+    } 
+
+    console.log("login detalse:", values.username);
+   
+  }
+
+ 
 
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold text-center text-gray-900">Login</h1>
-        
+
         <Formik
-          initialValues={{ username: '', password: '' }}
+          initialValues={{ username: 'aaa', password: '123456' }}
           validationSchema={LoginSchema}
-          onSubmit={(values, { setSubmitting }) => {
-            console.log("login detalse:",values);
-            
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
+          onSubmit={dataVerification}
         >
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
@@ -68,7 +91,7 @@ function Login() {
               >
                 Sign in
               </button>
-              
+
             </form>
           )}
         </Formik>

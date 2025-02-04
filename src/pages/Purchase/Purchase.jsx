@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../index';
 import '../../components/Body/Product.css';
-import { Button, Col, Row } from 'react-bootstrap';
+import {Col, Row } from 'react-bootstrap';
+import Button from '@mui/material/Button';
+import notFount from '../../assets/notFount.webp'
 
 
 export const Purchase = React.memo(() => {
@@ -31,7 +33,7 @@ export const Purchase = React.memo(() => {
   );
 
   const totalPrice = sliceParchase.reduce((sum, item) => {
-    return sum + (item.passId?.price || 0); 
+    return sum + (calculateDiscountPrice(item.detail?.price,item.detail?.discountPercentage) || 0); 
   }, 0);
 
 
@@ -39,6 +41,7 @@ export const Purchase = React.memo(() => {
     return (
       <div className="empty-cart">
         <p>No items in the cart.</p>
+        <img src={notFount} alt="" srcSet="" />
         <Link to="/" className="shop-now-btn">
           Shop Now
         </Link>
@@ -50,36 +53,39 @@ export const Purchase = React.memo(() => {
     <div className="container">
 
       <div className="parchase-nav">
-        <Row className="parchase-nav-sub">
+        <Col className="parchase-nav-sub">
           <Col md={6} sm={12} className="parchase-nav-count">
             <h1 className='parchasenavcounthead '>Product Count : <span>{sliceParchase.length}</span></h1>
           </Col>
           <Col md={6} sm={12} className="parchase-nav-price">
             <h1 className='parchasenavpricehead'>Totel price : <span>{totalPrice.toFixed(2)}</span></h1>
           </Col>
-        </Row>
+        </Col>
+        
+        <Col className='parchase-nav-prchsall'><Button>Purchase all</Button></Col>
+
       </div>
       <div className="parchase-cart">
 
         {sliceParchase.map((item) => {
-          if (!item.passId || !item.passId.id) return null;
+          if (!item.detail || !item.detail.id) return null;
 
           return (
             <>
-              <div key={item.passId.id} className="product-card section_padd" >
+              <div key={item.detail.id} className="product-card section_padd" >
 
                 <div className="parchase-add-btn">
                   <div className="parchase-add-btn-sub" onClick={() => setShow(show - 1)}>-</div>
                   <div className="parchase-add-btn-show">{show}</div>
                   <div className="parchase-add-btn-add" onClick={() => setShow(show + 1)}>+</div>
                 </div>
-                <Link to={`/product/${item.passId.id}`} onClick={() => handleClick(item.passId)} className='product-card-in'>
-                  <img className='parchase-img' src={item.passId.thumbnail} alt={item.passId.title || 'Product Image'} />
-                  <h1 className="product-card-title">{truncateText(item.passId.title, 20)}</h1>
-                  <h6 className='product-card-ctg'>({item.passId.category})</h6>
+                <Link to={`/details/id=${item.detail.id}`} onClick={() => handleClick(item.detail)} className='product-card-in'>
+                  <img className='parchase-img' src={item.detail.thumbnail} alt={item.detail.title || 'Product Image'} />
+                  <h1 className="product-card-title">{truncateText(item.detail.title, 20)}</h1>
+                  <h6 className='product-card-ctg'>({item.detail.category})</h6>
                   <div className="product-card-prices">
                     <h1 className="product-card-price">
-                      <span>Price: </span>${calculateDiscountPrice(item.passId.price, item.passId.discountPercentage)}
+                      <span>Price: </span>${calculateDiscountPrice(item.detail.price, item.detail.discountPercentage)}
                     </h1>
                     {/* <h2 className="product-card-price-off">
                       <s>${item.passId.price}</s>

@@ -26,6 +26,8 @@
 .cart-side-img{
     border: 2px solid #3498db;
     margin: 2%;
+    display: flex;
+    justify-content: center;
 }
 .cart-add-btn-name {
     font-size: var(--tx-cart-fs);
@@ -85,6 +87,9 @@
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 6px;
     justify-content: center;
+}
+.cart-details-paragraph-content span,.cart-discription-content span,.cart-name-rating-brand-name,.cart-name-price-sub-not-name ,.cart-name-price-sub-not-name {
+color: var(--cl-fade);
 }
 
 .cart-name-rating-box {

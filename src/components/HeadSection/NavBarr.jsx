@@ -3,11 +3,12 @@ import "bootstrap";
 import './NavBarr.css';
 import './NavBarrRes.css';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Badge, Menu, X } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faUser, faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { ThemeContext } from '../../index';
+import MailIcon from '@mui/icons-material/Mail';
 
 
 export const NavBarr = () => {
@@ -21,7 +22,7 @@ export const NavBarr = () => {
       if (9 < count) { setStoreCount("9+") }
       else setStoreCount(count)
     }
-    else setStoreCount('');
+    else setStoreCount(0);
   }, [count]);
 
   const inputFocused = () => {
@@ -45,7 +46,7 @@ export const NavBarr = () => {
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
             <div className="nav-brand">
-              <h5>𝓣𝓱𝓮 𝓗𝓸𝓷𝓮𝓼𝓽 𝓘 𝓢𝓮𝓮𝓷 </h5>
+              <h5> 𝓟𝓻𝓸𝓭𝓾𝓬𝓽 𝓩𝓸𝓷𝓮</h5>
             </div>
 
             <div className={`nav-menu ${isOpen ? 'active' : ''}`}>
@@ -56,7 +57,7 @@ export const NavBarr = () => {
             <div className='navbar-res-cart' >
               <NavLink to='addcart'>
                 <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
-                <img src="" alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card navbar-res-cart' />
+                <FontAwesomeIcon icon={faCartShopping} />
 
               </NavLink>
 
@@ -77,7 +78,7 @@ export const NavBarr = () => {
         <div className='nav-bar'>
           <div className='nav-bar-img'>
             {/* 𝓣𝓱𝓲𝓼 */}
-            <img srcSet="src\assets\this-black.png" alt="" className='nav-bar-img-in' />
+            <img srcSet="src\assets\PZ.png" alt="" className='nav-bar-img-in' />
           </div>
           <div className='nav-link'>
             <NavLink className='nav-head' to='/'>HOME</NavLink>
@@ -87,8 +88,13 @@ export const NavBarr = () => {
           <div className='nav-link-sub' >
             <div>
               <NavLink to='addcart'>
+
+                {/* <Badge badgeContent={4} color="primary">
+                  <MailIcon color="action" />
+                </Badge> */}
+
                 <div className="nav-purchase"><h1 className='nav-purchase-count'>{storeCount}</h1></div>
-                <img alt="" srcSet="src\assets\bxs-cart-add.svg" className='nav-card' />
+                <FontAwesomeIcon icon={faCartShopping} />
               </NavLink>
             </div>
             <div className='nav-link-user link'>

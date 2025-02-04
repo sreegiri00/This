@@ -9,12 +9,14 @@
     --nav-height: 4rem;
 
     --cl-bg-body: #fffaecca;
+    --cl-bg-footer:#ebe7ddda;
     --cl-bg-cards: #fffbfbc9;
     --cl-bg-card: #ffffff71;
     --cl-backgrount: #ffffff95;
     --cl-tx-head: #AB4459;
     --tx-fs-head: 2rem;
     --tx-fw-head: 700;
+    --cl-fade:rgba(58, 58, 58, 0.76);
     
     --tx-card-fs-head: 1.5rem;
     --tx-card-fw-head: 700;
@@ -83,6 +85,10 @@ body {
         --tx-p-fs: 1.25rem;
         --tx-p-lh: 1.3rem;
 
+        --input-box-width:500px;
+        --input-box-height:50px;
+
+
     }
 
 }
@@ -113,6 +119,8 @@ body {
         --tx-p-lh: 1.75rem;
 
         --img-sz:15rem;
+
+        --input-box-width:330px;
     }
 
 }

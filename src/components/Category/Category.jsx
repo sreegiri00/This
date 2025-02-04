@@ -71,7 +71,6 @@ export const Category = ({updateValue,cls}) => {
 
     return (
         <>
-
             <div className={`${cls ? 'ctg-main-main' : 'ctg-main-main-h'}`} ref={carouselRef}>
                 <Slider {...settings} ref={sliderRef}>
                     {mergData.map((item) => (

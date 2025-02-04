@@ -109,7 +109,6 @@
     background: #000;
 }
 .product-cads {
-
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 16px;
@@ -117,13 +116,11 @@
     background:var(--cl-bg-cards);
     border-radius: 20px;
     padding-top: 3rem;
-    
-    
 }
 .product-card-img{
     height: auto;
     width: var(--img-sz);
-    
+  
 }
 .product-card-titel{
     font-weight: var(--tx-card-fw-head);
@@ -159,7 +156,7 @@
 }
 .product-card-price-off{
     font-size: var(--tx-fs-current-price);
-    color: var(--cl-denger);      
+    color: var(--cl-fade);      
 }
 .product-card-prices div h3{
     color: var(--cl-ok);

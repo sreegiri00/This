@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { ThemeContext } from '../../index';
 import { Col, Row } from 'react-bootstrap';
-import Button from '@mui/joy/Button';
+// import Button from '@mui/joy/Button';
+import Button from '@mui/material/Button';
 import './Details.css'
 import { useDispatch } from 'react-redux';
 import { addCart } from '../../utils/addToCartSlice';
 import { useSelector } from 'react-redux';
 import onePro from "../../../public/Data/onePro.json";
+import { bgcolor } from '@mui/system';
 
 export const Details = () => {
   const { passId } = useContext(ThemeContext)
@@ -14,28 +16,50 @@ export const Details = () => {
   const [detail, setDetail] = useState({});
   // const [passId, setPassId] = useState(onePro)
   const sliceParchase = useSelector((state) => state.addToCartSlice.items);
-  
+
   const url = window.location.href;
   const urlId = url.split("id=")[1];
   const [idVal, setIdVal] = useState(`https://dummyjson.com/products/${urlId}`);
-  
+
   useEffect(() => {
     fetch(idVal)
-    .then(res => res.json())
-    .then(data => {
-      
-      setDetail(data);
-    })
-  }, [idVal]);  
+      .then(res => res.json())
+      .then(data => {
+
+        setDetail(data);
+      })
+  }, [idVal]);
   const { id, title, images = [], thumbnail, rating, brand, price, description, reviews = [], discountPercentage, category, dimensions, weight, stock, availabilityStatus } = detail;
 
 
   const dispatch = useDispatch()
   // console.log("ss: ", sliceParchase);
   // console.log("==op : ",imgg);
-  
+
+
+
   const addToParchase = (e) => {
-    dispatch(addCart({ passId }));
+    console.log("added", sliceParchase.de);
+    console.log("added : : ", detail);
+
+    const isCart = sliceParchase.map((res) => res.detail.id == detail.id).filter((res) => res === false);
+    const result = isCart.length < sliceParchase.length ? true : isCart;
+    console.log("result :", result);
+    console.log("carttt :", isCart);
+
+    if (true == result) {
+      console.log("its alredyy exist");
+      console.log("cart array :", isCart);
+
+      console.log("is not ::", sliceParchase[0].detail.id);
+      console.log("cart array :", isCart);
+    }
+    else {
+      console.log("cart array :", isCart);
+      console.log("is not", detail.id);
+      dispatch(addCart({ detail }));
+    }
+
   };
 
 
@@ -47,32 +71,33 @@ export const Details = () => {
     <>
 
       <Row lg={12} className='cart-main '>
-      
+
         <Col md={6} className='cart-main-left' >
           <div className="cart-main-left-sub">
 
             <Col md={12}>
               <Row>
                 <div className="cart-main-img">
-                  <img srcSet={imgg.length==0 ? thumbnail : imgg} alt="" className='cart-main-img-in' />
+                  <img srcSet={imgg.length == 0 ? thumbnail : imgg} alt="" className='cart-main-img-in' />
                 </div>
               </Row>
             </Col>
             <Row>
               <div className='cart-add'>
-                <Button className='cart-add-btn cart-add-btn-name' variant="soft" color="primary" name={id} onClick={addToParchase}> <h2 name={id}>Add Cart</h2></Button>
+                <Button className='cart-add-btn cart-add-btn-name' variant="contained" color="primary" name={id} onClick={addToParchase}> <h2 name={id}>Add Cart</h2></Button>
               </div>
             </Row>
             <Row >
               <div className="cart-side-img-box-main">
                 <div className="cart-side-img-box">
-                  {images?.map((res, index) => <Col key={index} ><div className='cart-side-img' onClick={()=>setImgg(res)}><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
+                  {images?.map((res, index) => <Col key={index} >
+                    <div className='cart-side-img' onClick={() => setImgg(res)} style={{ border: imgg === res ? "2px solid red " : "", background: imgg === res ? "#00000008" : "" }}><img srcSet={res} alt="" className='cart-side-img-in' /></div></Col>)}
                 </div>
               </div>
             </Row>
           </div>
         </Col>
-      
+
         <Col md={6} className='cart-main-right' >
           <Row>
             <div className='cart-name'>
@@ -93,7 +118,7 @@ export const Details = () => {
               </Row>
               <div className="cart-name-price-box">
                 <div className="cart-name-price-box-in">
-                  <h1 className="cart-name-price">Price&nbsp;:&nbsp;{cal(price,discountPercentage)}&nbsp;$ </h1>
+                  <h1 className="cart-name-price">Price&nbsp;:&nbsp;{cal(price, discountPercentage)}&nbsp;$ </h1>
                 </div>
                 <div className="cart-name-price-sub">
                   <div className="cart-name-price-sub-not">
@@ -109,20 +134,20 @@ export const Details = () => {
           <hr />
           <Row>
             <h1 className='cart-discription-head cart-sub-head'>Description : </h1>
-            <div className='cart-discription-content'>{description} </div>
+            <div className='cart-discription-content'> <span>{description}</span> </div>
           </Row><hr />
           <Row>
             <div className='cart-detales'>
-              <h1 className="cart-details-head cart-sub-head">Details :{id} </h1>
+              <h1 className="cart-details-head cart-sub-head">Details : </h1>
               <div className="cart-details-paragraph">
-                <div className="cart-details-paragraph-content">Brand : {brand}</div>
-                <div className="cart-details-paragraph-content">Category : {category}</div>
-                <div className="cart-details-paragraph-content">Weight :{weight}</div>
-                {/* <div className="cart-details-paragraph-content">Width :{dimensions.width}</div> */}
-                {/* <div className="cart-details-paragraph-content">Height :{dimensions.height}</div> */}
-                {/* <div className="cart-details-paragraph-content">Depth :{dimensions.depth} </div> */}
-                <div className="cart-details-paragraph-content">Availebility :{availabilityStatus}</div>
-                <div className="cart-details-paragraph-content">Stoke : {stock}</div>
+                <div className="cart-details-paragraph-content">Brand : <span>{brand}</span></div>
+                <div className="cart-details-paragraph-content">Category : <span>{category}</span></div>
+                <div className="cart-details-paragraph-content">Weight :<span>{weight}</span></div>
+                {/* <div className="cart-details-paragraph-content">Width :<span>{dimensions.width}</span></div> */}
+                {/* <div className="cart-details-paragraph-content">Height :<span>{dimensions.height}</span></div> */}
+                {/* <div className="cart-details-paragraph-content">Depth :<span>{dimensions.depth}</span> </div> */}
+                <div className="cart-details-paragraph-content">Availebility :<span>{availabilityStatus}</span></div>
+                <div className="cart-details-paragraph-content">Stoke : <span>{stock}</span></div>
               </div>
             </div>
           </Row>
@@ -133,7 +158,7 @@ export const Details = () => {
           <hr />
           <Row>
             <div className='cart-users'> <div className="cart-users-main"> <h1 className="cart-users-main cart-sub-head">Review : </h1></div>
-              {reviews.map((res,index) =>
+              {reviews.map((res, index) =>
                 <Row key={index}>
                   <div className="cart-user-box">
                     <Row className="cart-user-names">
