@@ -6,15 +6,24 @@
 }
 
 /* //banner start */
-
 .banner-img {
     width: 100%;
     height: 90vh;
-    background-image: url('https://images.pexels.com/photos/1377034/pexels-photo-1377034.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=5');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.pexels.com/photos/1087727/pexels-photo-1087727.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=10');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
+/* .banner-img::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.288); 
+} */
 /* //banner end */
 /* .catagory-bar{
     position: sticky;
@@ -23,6 +32,14 @@
     background: var(--cl-bg-body);
     
 } */
+
+.product-card-top{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    position: relative;
+    top: 5%;
+}
 .product-bar {
     display: flex;
     justify-content: center;
@@ -83,6 +100,7 @@
 
 .product-card {
     /* width: 50%; */
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,6 +113,7 @@
     padding: 1rem;
     text-decoration: none;
     color: #000;
+    box-shadow: rgb(204, 219, 232) 2px 1px 1px 0px inset;
     
 }
 
@@ -110,9 +129,9 @@
 }
 .product-cads {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 16px;
-    padding: 16px;
+    padding: 5%;
     background:var(--cl-bg-cards);
     border-radius: 20px;
     padding-top: 3rem;
@@ -127,6 +146,10 @@
     font-size: var( --tx-card-fs-head);
     width: 100%;
     text-align: center;
+    color: var(--cl-current-price);
+}
+.product-card-ctg{
+    color: var(--cl-current-price);
 }
 .product-card-des{
     font-weight: var(--tx-card-fw);
@@ -143,6 +166,34 @@
     align-items: center;
     width: 100%;
 }
+.product-card-top-off{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    background:var(--butten-clr-off);
+    /* Fading gradient */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    padding: 15px 25px 10px 25px;
+    border-radius: 15px;
+}
+.product-card-top-addcart-in{
+    display: flex;
+    color: var(--cl-tx-head);
+    position: sticky;
+    z-index: 100;
+    background:var(--butten-clr);
+    /* Fading gradient */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    padding: 10px 12px;
+    border-radius: 29px;
+}
 .product-card-price{
     font-size: var(--tx-cart-fs);
 }
@@ -154,13 +205,20 @@
     font-weight:var(--tx-fw-current-price);
     color: var(--cl-current-price);
 }
-.product-card-price-off{
-    font-size: var(--tx-fs-current-price);
+.product-card-price-off s{
+    font-size: var(--tx-current-off-price);
     color: var(--cl-fade);      
+
 }
-.product-card-prices div h3{
+
+.product-card-price-prg{
     color: var(--cl-ok);
     font-size: var(--tx-card-fs);
+    font-weight: var(--tx-card-fw-head);
+}
+.product-card-prices-up{
+    display: flex;
+    justify-content: space-around;
 }
 .ctg-main-box{
     display: flex;
@@ -171,4 +229,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.banner-head-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90vh;
+    justify-content: center;
+}
+.banner-head{
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 10%; */
+    /* height: 90vh; */
+    font-size:100px;
+    font-weight: 600;
+}
+.banner-p{
+    display: flex;
+    justify-content: center;
+    color: rgb(255, 255, 255);
+
+    font-size:20px;
+    font-weight: 600;
 }

@@ -49,8 +49,8 @@ function Login() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-lg">
         <h1 className="text-3xl font-bold text-center text-gray-900">Login</h1>
 
         <Formik
@@ -60,16 +60,16 @@ function Login() {
         >
           {({ handleSubmit, isSubmitting }) => (
             <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-              <div className="rounded-md shadow-sm space-y-4">
+              <div className="space-y-4 rounded-md shadow-sm">
                 <div>
                   <label htmlFor="username" className="sr-only">Username</label>
                   <Field
                     name="username"
                     type="text"
-                    className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Username"
                   />
-                  <ErrorMessage name="username" component="div" className="text-red-500 text-sm mt-1" />
+                  <ErrorMessage name="username" component="div" className="mt-1 text-sm text-red-500" />
                 </div>
 
                 <div>
@@ -77,17 +77,17 @@ function Login() {
                   <Field
                     name="password"
                     type="password"
-                    className="appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="Password"
                   />
-                  <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+                  <ErrorMessage name="password" component="div" className="mt-1 text-sm text-red-500" />
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200"
+                className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white transition-colors duration-200 bg-blue-600 border border-transparent rounded-md group hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Sign in
               </button>

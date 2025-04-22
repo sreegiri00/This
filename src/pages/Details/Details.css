@@ -8,9 +8,7 @@
 
 
 /* COL CART LEFT  START */
-@media screen and (min-width : 1025px) {
-    
-}
+
 @media screen and (min-width : 768px) {
     .cart-main-left-sub {
         position: sticky;
@@ -295,6 +293,6 @@ color: var(--cl-fade);
 }
 .cart-main-right{
     position: sticky;
-    top: 0;
+    top: 10px;
 }
 /* COL CART RIGHT ENDS */

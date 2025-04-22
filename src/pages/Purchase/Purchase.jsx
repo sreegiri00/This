@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '../../index';
 import '../../components/Body/Product.css';
-import {Col, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import Button from '@mui/material/Button';
 import notFount from '../../assets/notFount.webp'
+import { useDispatch } from 'react-redux';
+import { addCart } from '../../utils/addToCartSlice';
 
 
 export const Purchase = React.memo(() => {
@@ -14,6 +16,7 @@ export const Purchase = React.memo(() => {
   const { setPassId, passId } = useContext(ThemeContext);
   const [show, setShow] = useState(0);
 
+  const dispatch = useDispatch()
 
 
   const truncateText = useCallback((text, length) => {
@@ -22,7 +25,7 @@ export const Purchase = React.memo(() => {
 
   const calculateDiscountPrice = useCallback((price, discount) => {
     return parseFloat((price * (1 - discount / 100)).toFixed(2));
-    
+
   }, []);
 
   const handleClick = useCallback(
@@ -33,9 +36,33 @@ export const Purchase = React.memo(() => {
   );
 
   const totalPrice = sliceParchase.reduce((sum, item) => {
-    return sum + (calculateDiscountPrice(item.detail?.price,item.detail?.discountPercentage) || 0); 
+    return sum + (calculateDiscountPrice(item.detail?.price, item.detail?.discountPercentage) || 0);
   }, 0);
 
+const totelProduct = sliceParchase.map(res=> res.detail.id)
+console.log("idd::::",totelProduct);
+
+// Find unique IDs
+const uniqueIds = [...new Set(totelProduct)];
+
+// Find duplicate IDs
+const duplicateIds = totelProduct.filter((id, index, arr) => arr.indexOf(id) !== index);
+
+console.log("Unique IDs:", uniqueIds);  // Output: [2, 3]
+console.log("Duplicate IDs:", duplicateIds);  // Output: [3, 3, 3]
+
+
+
+  const addProduct = async (proId) => {
+    try {
+      const response = await fetch(`https://dummyjson.com/products/${proId}`);
+      const data = await response.json();
+      
+      dispatch(addCart({detail: data }));
+    } catch (error) {
+      console.error("Error fetching product details:", error);
+    }
+  }
 
   if (!sliceParchase || sliceParchase.length === 0) {
     return (
@@ -61,7 +88,7 @@ export const Purchase = React.memo(() => {
             <h1 className='parchasenavpricehead'>Totel price : <span>{totalPrice.toFixed(2)}</span></h1>
           </Col>
         </Col>
-        
+
         <Col className='parchase-nav-prchsall'><Button>Purchase all</Button></Col>
 
       </div>
@@ -75,9 +102,12 @@ export const Purchase = React.memo(() => {
               <div key={item.detail.id} className="product-card section_padd" >
 
                 <div className="parchase-add-btn">
-                  <div className="parchase-add-btn-sub" onClick={() => setShow(show - 1)}>-</div>
+                  <div className="parchase-add-btn-sub" onClick={(e) => setShow(show - 1)}>-</div>
                   <div className="parchase-add-btn-show">{show}</div>
-                  <div className="parchase-add-btn-add" onClick={() => setShow(show + 1)}>+</div>
+                  <div className="parchase-add-btn-add" onClick={(e) => {
+                    e.stopPropagation();
+                    addProduct(item.detail.id)
+                  }}>+</div>
                 </div>
                 <Link to={`/details/id=${item.detail.id}`} onClick={() => handleClick(item.detail)} className='product-card-in'>
                   <img className='parchase-img' src={item.detail.thumbnail} alt={item.detail.title || 'Product Image'} />
@@ -95,11 +125,11 @@ export const Purchase = React.memo(() => {
                     </h3> */}
                   </div>
                 </Link>
-              </div>
+              </div >
             </>
           );
         })}
       </div>
-    </div>
+    </div >
   );
 });

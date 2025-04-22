@@ -35,7 +35,7 @@ export const Category = ({updateValue,cls}) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: wdt,
+        slidesToShow: 8,
         slidesToScroll: 1,
         responsive: [
             { breakpoint: 1024, settings: { slidesToShow: 3 } },

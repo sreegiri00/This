@@ -11,11 +11,11 @@ import onePro from "../../../public/Data/onePro.json";
 import { bgcolor } from '@mui/system';
 
 export const Details = () => {
-  const { passId } = useContext(ThemeContext)
+  // const { passId } = useContext(ThemeContext)
   const [imgg, setImgg] = useState([]);
   const [detail, setDetail] = useState({});
   // const [passId, setPassId] = useState(onePro)
-  const sliceParchase = useSelector((state) => state.addToCartSlice.items);
+  const sliceParchase = useSelector((state) => state.addToCartSlice.items); 
 
   const url = window.location.href;
   const urlId = url.split("id=")[1];
@@ -39,16 +39,16 @@ export const Details = () => {
 
 
   const addToParchase = (e) => {
-    console.log("added", sliceParchase.de);
+    console.log("added", sliceParchase);
     console.log("added : : ", detail);
 
     const isCart = sliceParchase.map((res) => res.detail.id == detail.id).filter((res) => res === false);
     const result = isCart.length < sliceParchase.length ? true : isCart;
-    console.log("result :", result);
+    console.log("result :", result[0]);
     console.log("carttt :", isCart);
 
     if (true == result) {
-      console.log("its alredyy exist");
+      alert("its alredyy exist");
       console.log("cart array :", isCart);
 
       console.log("is not ::", sliceParchase[0].detail.id);

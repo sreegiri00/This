@@ -1,4 +1,5 @@
 import React from 'react'
+import './About.css'
 
 export const About = () => {
   return (
@@ -52,22 +53,7 @@ export const About = () => {
                 <li>Bank Transfers</li>
               </ul>   </div>
           </div>
-          <div className="about-section">
-            <h3 className="about-head">      </h3>
-            <div className="about-paragraph">      </div>
-          </div>
-          <div className="about-section">
-            <h3 className="about-head">      </h3>
-            <div className="about-paragraph">      </div>
-          </div>
-          <div className="about-section">
-            <h3 className="about-head">      </h3>
-            <div className="about-paragraph">      </div>
-          </div>
-          <div className="about-section">
-            <h3 className="about-head">      </h3>
-            <div className="about-paragraph">      </div>
-          </div>
+          
         </div>
       </div>
 

@@ -16,7 +16,7 @@ export const Body = () => {
     const [searchData, setSearchData] = useState([])
     const [ctg, setCtg] = useState('https://dummyjson.com/products');
     const [cls, setCls] = useState(true);
-    const {focused} = useContext(ThemeContext)
+    const { focused } = useContext(ThemeContext)
 
     useEffect(() => {
         const check = (window.innerWidth)
@@ -33,9 +33,9 @@ export const Body = () => {
                     setSearchData(data.products)
             })
     }, [ctg]);
-const inputFucused =()=>{
-    focused.current.focus()
-}
+    const inputFucused = () => {
+        focused.current.focus()
+    }
 
 
     //input is saved
@@ -61,7 +61,14 @@ const inputFucused =()=>{
     return (
         <>
             <div>
-                <div className='banner-img'></div>
+                <div className='banner-img'>
+                    <div className='banner-head-main'>
+                        <h1 className='banner-head'>Shop Smart, Shop Fast! </h1>
+                        <div className='banner-p'>
+                            Discover the best deals and latest trends. Browse, choose, and purchase in just a few clicks
+                        </div>
+                    </div>
+                </div>
             </div>
             <div className="catagory-bar">
                 <div className="product-main">
@@ -75,7 +82,7 @@ const inputFucused =()=>{
                     <Category updateValue={setCtg} cls={cls} />
                     <div className={`${cls ? 'product-bar-srch' : 'product-bar-srch-h'}`}>
                         <div>
-                            <input type="text" className='product-input' onChange={filterProduct} placeholder='Search the products...' ref={focused}/>
+                            <input type="text" className='product-input' onChange={filterProduct} placeholder='Search the products...' ref={focused} />
                         </div>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
 
     --cl-bg-body: #fffaecca;
     --cl-bg-footer:#ebe7ddda;
-    --cl-bg-cards: #fffbfbc9;
+    --cl-bg-cards: #fdefef;
     --cl-bg-card: #ffffff71;
     --cl-backgrount: #ffffff95;
     --cl-tx-head: #AB4459;
@@ -41,7 +41,10 @@
     --tx-p-fs: 1.25rem;
     --tx-p-lh: 1.75rem;
     
-    --cart-sz :10rem
+    --cart-sz :10rem;
+
+    --butten-clr:linear-gradient(90deg, rgba(255, 0, 0, 0.116), rgba(0, 0, 255, 0.196));
+    --butten-clr-off:linear-gradient(90deg, rgba(255, 0, 0, 0.068), rgba(0, 0, 255, 0.055));
 
 
 
